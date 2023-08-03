@@ -50,30 +50,19 @@ long boardCutting(vector<int> cost_y, vector<int> cost_x) {
     {
         if(venter[i].second == 0)
         {
-            if(LONG_MAX - sum <= (long)(multiplier_x*venter[i].first))
-            {
-                counter += 1;
-                sum += ((long)(multiplier_x*venter[i].first) - (LONG_MAX - sum))%1000000007;
-                sum = (long)(multiplier_x*venter[i].first) - (LONG_MAX - sum);
-            } else {
-                sum += (long)(multiplier_x*venter[i].first);
-            }
+            long y = (long)multiplier_x*venter[i].first % 1000000007;
+            sum += y;
             
             multiplier_y += 1;
         } else {
-            if(LONG_MAX - sum <= (long)(multiplier_y*venter[i].first))
-            {
-                counter += 1;
-                sum = (long)(multiplier_y*venter[i].first) - (LONG_MAX - sum);
-            } else {
-                sum += (long)(multiplier_y*venter[i].first);
-            }
+            long y = (long)multiplier_y*venter[i].first % 1000000007;
+            sum += y;
             //sum += (long)(multiplier_y*venter[i].first);
             multiplier_x += 1;
         }
         sum %= 1000000007;
     }
-    cout << counter << endl;
+    //cout << counter << endl;
     return sum;
 }
 
